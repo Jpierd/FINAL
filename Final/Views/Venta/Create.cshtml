@@ -1,0 +1,68 @@
+﻿@model Final.ViewModels.Ventas.CrearVentaViewModel
+
+<div class="container">
+    <form action="@Url.Action("Create", "Venta")" method="post" class="form-horizontal">
+        <fieldset>
+            <legend>Datos básicos</legend>
+            <div class="form-group">
+                <label for="numeroComprobante" class="col-sm-3 control-label text-left">Número de comprobante:</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="numeroComprobante" name="NumeroComprobante" placeholder="Número de comprobante">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="cliente" class="col-sm-3 control-label text-left">Cliente:</label>
+                <div class="col-sm-9">
+                    <select class="form-control" name="ClienteId" id="cliente">
+                        <option value="">[Seleccione una opción]</option>
+                        @foreach (var item in Model.Clientes)
+                        {
+                            <option value="@item.Id">@item.Name</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="fecha" class="col-sm-3 control-label text-left">Fecha de venta:</label>
+                <div class="col-sm-9">
+                    <input type="text" class="form-control" id="fecha" name="Fecha" placeholder="mm/dd/yyyy">
+                </div>
+            </div>
+        </fieldset>
+        <fieldset>
+            <legend>Artículos</legend>
+            <input type="text" class="form-control col-md-12" placeholder="Buscar artículo">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Código</th>
+                        <th>Artículo</th>
+                        <th>Precio</th>
+                        <th>Cantidad</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0001<input type="hidden" name="Products[0].Id" value="1"/></td>
+                        <td>Item 01</td>
+                        <td><input type="text" name="Products[0].PrecioUnidad" /></td>
+                        <td><input type="text" name="Products[0].Cantidad" /></td>
+                    </tr>
+                    <tr>
+                        <td>0002<input type="hidden" name="Products[1].Id" value="2" /></td>
+                        <td>Item 02</td>
+                        <td><input type="text" name="Products[1].PrecioUnidad" /></td>
+                        <td><input type="text" name="Products[1].Cantidad" /></td>
+                    </tr>
+                    <tr>
+                        <td>0003<input type="hidden" name="Products[2].Id" value="3" /></td>
+                        <td>Item 01</td>
+                        <td><input type="text" name="Products[2].PrecioUnidad" /></td>
+                        <td><input type="text" name="Products[2].Cantidad" /></td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+        <button type="submit" class="btn btn-primary pull-right">Guardar</button>
+    </form>
+</div>
